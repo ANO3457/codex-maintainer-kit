@@ -119,6 +119,8 @@ release_command = "gh release create vX.Y.Z --title vX.Y.Z --notes-file CHANGELO
 default_labels = ["maintenance", "codex"]
 ```
 
+Default Python verification commands use pytest's discovery settings, so test suites in `test/`, at the repository root, or configured with `testpaths` do not require a `tests/` directory. An explicit `verification_command` still takes precedence.
+
 Currently, `tasks` uses `verification_command` and `default_labels` when generating Markdown, JSON, and GitHub issue drafts. Unknown keys are ignored to keep the config format forwards-compatible.
 
 Preview starter files:

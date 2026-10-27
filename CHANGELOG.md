@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Let generated Python verification commands use pytest discovery instead of requiring a `tests/` directory.
+
 - Updated CI to use minimal read permissions and Node 24-compatible GitHub Actions.
 - Added Dependabot coverage for non-major GitHub Actions and Python packaging updates.
 - Removed local absolute paths from generated example artifacts.
