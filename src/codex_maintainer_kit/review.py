@@ -147,7 +147,7 @@ def _verification_commands(scan: RepositoryScan, verification_command: str | Non
         return [verification_command]
     if scan.files.get("tests", False):
         if "python" in scan.project_hints:
-            return ["python3 -m pytest -p no:cacheprovider tests -q"]
+            return ["python3 -m pytest -p no:cacheprovider -q"]
         if "javascript" in scan.project_hints:
             return ["npm test"]
         if "go" in scan.project_hints:

@@ -30,7 +30,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["A LICENSE file exists.", "README license references are accurate.", "No source files are changed unnecessarily."],
         review_notes="Human review must confirm the intended license before merge.",
         suggested_labels=["maintenance", "documentation"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "agents": MaintenanceTask(
         id="add-agents",
@@ -41,7 +41,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["AGENTS.md exists.", "The test command is documented.", "The file says AI-generated changes require human review."],
         review_notes="Human review should confirm the instructions match the real repository workflow.",
         suggested_labels=["maintenance", "documentation", "codex"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "tests": MaintenanceTask(
         id="add-tests",
@@ -52,7 +52,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["A test directory or test files exist.", "The documented test command passes.", "Tests cover behavior rather than implementation details."],
         review_notes="Human review should inspect whether tests would fail for a real regression.",
         suggested_labels=["testing", "maintenance"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "ci": MaintenanceTask(
         id="add-ci",
@@ -74,7 +74,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["README explains who the project is for.", "README includes install and usage examples.", "README names the verification command."],
         review_notes="Human review should confirm claims are accurate and not overstated.",
         suggested_labels=["documentation"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "contributing": MaintenanceTask(
         id="add-contributing",
@@ -85,7 +85,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["CONTRIBUTING.md exists.", "Local setup is documented.", "Pull request expectations are clear."],
         review_notes="Human review should confirm the workflow is realistic for new contributors.",
         suggested_labels=["documentation", "maintenance"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "security": MaintenanceTask(
         id="add-security",
@@ -96,7 +96,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["SECURITY.md exists.", "It explains how to report vulnerabilities.", "It avoids asking users to disclose sensitive issues publicly."],
         review_notes="Human review should confirm the contact path is correct before publishing.",
         suggested_labels=["security", "documentation"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "issue_templates": MaintenanceTask(
         id="add-issue-templates",
@@ -107,7 +107,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["Issue templates exist.", "Templates ask for expected behavior or goal.", "Templates include a verification section."],
         review_notes="Human review should confirm templates reduce ambiguity instead of adding process overhead.",
         suggested_labels=["maintenance", "github"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "changelog": MaintenanceTask(
         id="add-changelog",
@@ -118,7 +118,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["CHANGELOG.md exists.", "The first section matches the current project state.", "No future features are claimed as shipped."],
         review_notes="Human review should confirm the release notes match actual code.",
         suggested_labels=["release", "documentation"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
     "code_of_conduct": MaintenanceTask(
         id="add-code-of-conduct",
@@ -129,7 +129,7 @@ TASK_DEFINITIONS = {
         completion_criteria=["CODE_OF_CONDUCT.md exists.", "It sets behavior expectations.", "It names how maintainers can respond to violations."],
         review_notes="Human review should confirm the policy fits the maintainer's actual moderation capacity.",
         suggested_labels=["documentation", "community"],
-        verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+        verification_command="python3 -m pytest -p no:cacheprovider -q",
     ),
 }
 
@@ -150,7 +150,7 @@ def build_tasks(scan: RepositoryScan, config: MaintainerConfig | None = None) ->
             completion_criteria=["One focused improvement is proposed.", "The relevant test or verification command is identified.", "A human maintainer reviews the diff before merge."],
             review_notes="Human review should confirm the proposed change is useful and small enough to merge safely.",
             suggested_labels=["maintenance", "codex"],
-            verification_command="python3 -m pytest -p no:cacheprovider tests -q",
+            verification_command="python3 -m pytest -p no:cacheprovider -q",
         )
         ]
     return [_apply_config(task, config) for task in tasks]
