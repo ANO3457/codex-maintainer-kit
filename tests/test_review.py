@@ -39,7 +39,7 @@ def test_build_review_report_classifies_source_and_test_changes() -> None:
 
     assert report.risk_level == "medium"
     assert [item.category for item in report.changed_files] == ["source", "tests", "docs"]
-    assert "python3 -m pytest -p no:cacheprovider tests -q" in report.verification_commands
+    assert "python3 -m pytest -p no:cacheprovider -q" in report.verification_commands
     assert any("Tests were changed" in item for item in report.review_checklist)
 
 
